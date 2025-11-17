@@ -1,0 +1,55 @@
+# Environment Schema Configuration
+# This file defines all environment variables for the application
+
+fields:
+  - name: API_URL
+    type: String
+    required: true
+    description: "Base URL for the API"
+    includeInEnv: true
+
+  - name: API_KEY
+    type: String
+    required: true
+    encrypted: true
+    description: "API key (encrypted)"
+    includeInEnv: true
+
+  - name: FEATURE_FLAG
+    type: bool
+    required: false
+    defaultValue: false
+    description: "Enable new feature"
+    includeInEnv: true
+
+  - name: MAX_RETRIES
+    type: int
+    required: false
+    defaultValue: 3
+    description: "Maximum number of retry attempts"
+    includeInEnv: true
+
+  - name: TIMEOUT_SECONDS
+    type: double
+    required: false
+    defaultValue: 30.0
+    description: "Request timeout in seconds"
+    includeInEnv: true
+
+# Environment-specific overrides
+extensions:
+  dev:
+    API_URL: "https://api-dev.example.com"
+    FEATURE_FLAG: true
+
+  staging:
+    API_URL: "https://api-staging.example.com"
+    FEATURE_FLAG: true
+
+  prod:
+    API_URL: "https://api.example.com"
+    FEATURE_FLAG: false
+
+# Optional: Master key for encryption (can also be set at runtime)
+# masterKey: "your-master-key-here"
+

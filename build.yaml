@@ -1,0 +1,10 @@
+targets:
+  $default:
+    builders:
+      secure_env_manager|envConfigBuilder:
+        enabled: true
+        generate_for:
+          - lib/**
+        options:
+          schema_path: env_schema.yaml
+
