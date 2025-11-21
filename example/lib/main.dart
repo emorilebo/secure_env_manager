@@ -58,7 +58,7 @@ class _EnvConfigScreenState extends State<EnvConfigScreen> {
       final timeout = EnvConfig.getDouble('TIMEOUT_SECONDS');
 
       if (apiUrl != null) values['API_URL'] = apiUrl;
-      if (apiKey != null) values['API_KEY'] = apiKey != null ? '***${apiKey.substring(apiKey.length - 4)}' : 'Not set';
+      if (apiKey != null) values['API_KEY'] = '***${apiKey.substring(apiKey.length - 4)}';
       if (featureFlag != null) values['FEATURE_FLAG'] = featureFlag.toString();
       if (maxRetries != null) values['MAX_RETRIES'] = maxRetries.toString();
       if (timeout != null) values['TIMEOUT_SECONDS'] = timeout.toString();
@@ -121,7 +121,7 @@ class _EnvConfigScreenState extends State<EnvConfigScreen> {
                               subtitle: Text(entry.value),
                               leading: const Icon(Icons.settings),
                             ),
-                          )),
+                          ),),
                       const SizedBox(height: 24),
                       const Card(
                         color: Colors.blue,
@@ -164,4 +164,5 @@ class _EnvConfigScreenState extends State<EnvConfigScreen> {
     );
   }
 }
+
 

@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:yaml/yaml.dart';
-import 'package:path/path.dart' as path;
 import 'env_schema.dart';
 
 /// Loads and parses environment schema from YAML files.
@@ -47,4 +46,5 @@ class SchemaLoader {
     );
   }
 }
+
 

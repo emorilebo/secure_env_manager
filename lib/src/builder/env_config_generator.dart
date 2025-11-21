@@ -1,8 +1,4 @@
-import 'dart:io';
-import 'package:path/path.dart' as path;
 import '../schema/env_schema.dart';
-import '../schema/schema_loader.dart';
-import '../encryption/encryption_service.dart';
 
 /// Generates the EnvConfig class from a schema.
 class EnvConfigGenerator {
@@ -88,11 +84,11 @@ class EnvConfigGenerator {
     buffer.writeln("    final value = _loadEnvValues()['${field.name}'];");
     
     if (required && defaultValue == null) {
-      buffer.writeln("    if (value == null) {");
+      buffer.writeln('    if (value == null) {');
       buffer.writeln("      throw StateError('Required environment variable ${field.name} is not set');");
       buffer.writeln('    }');
     } else if (defaultValue != null) {
-      buffer.writeln("    if (value == null) {");
+      buffer.writeln('    if (value == null) {');
       if (type == 'String') {
         buffer.writeln("      return '${defaultValue.toString().replaceAll("'", "\\'")}';");
       } else {

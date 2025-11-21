@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:build/build.dart';
-import 'package:path/path.dart' as path;
 import 'env_config_generator.dart';
 import '../schema/schema_loader.dart';
 
@@ -14,7 +13,7 @@ class EnvConfigBuilder implements Builder {
   @override
   FutureOr<void> build(BuildStep buildStep) async {
     // Look for env_schema.yaml in the project root
-    final schemaPath = 'env_schema.yaml';
+    const schemaPath = 'env_schema.yaml';
     
     try {
       // Try to read schema from asset or file
@@ -52,13 +51,13 @@ class EnvConfigBuilder implements Builder {
   Future<String?> _readSchema(BuildStep buildStep, String schemaPath) async {
     // Try to read as asset first
     try {
-      final assetId = AssetId.resolve(schemaPath);
+      final assetId = AssetId.resolve(Uri.parse(schemaPath));
       return await buildStep.readAsString(assetId);
     } catch (e) {
       // Try reading from file system
       try {
         final file = buildStep.inputId.uri.resolve(schemaPath).toFilePath();
-        return await buildStep.readAsString(AssetId.resolve(file));
+        return await buildStep.readAsString(AssetId.resolve(Uri.file(file)));
       } catch (e2) {
         return null;
       }

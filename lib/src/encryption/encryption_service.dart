@@ -1,5 +1,6 @@
 import 'package:encrypt/encrypt.dart';
 import 'dart:convert';
+import 'dart:typed_data';
 
 /// Service for encrypting and decrypting environment variable values.
 class EncryptionService {
@@ -28,7 +29,7 @@ class EncryptionService {
       final decoded = utf8.decode(base64Decode(encryptedValue));
       final parts = decoded.split(':');
       if (parts.length != 2) {
-        throw FormatException('Invalid encrypted format');
+        throw const FormatException('Invalid encrypted format');
       }
 
       final iv = IV.fromBase64(parts[0]);
@@ -48,7 +49,7 @@ class EncryptionService {
   static Key _deriveKey(String masterKey) {
     // Simple key derivation: pad or truncate to 32 bytes
     final bytes = utf8.encode(masterKey);
-    final keyBytes = List<int>.filled(32, 0);
+    final keyBytes = Uint8List(32);
 
     for (int i = 0; i < 32; i++) {
       keyBytes[i] = bytes[i % bytes.length];

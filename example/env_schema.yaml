@@ -53,3 +53,4 @@ extensions:
 # Optional: Master key for encryption (can also be set at runtime)
 # masterKey: "your-master-key-here"
 
+

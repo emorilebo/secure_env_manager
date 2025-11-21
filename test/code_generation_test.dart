@@ -6,9 +6,9 @@ import 'package:secure_env_manager/src/schema/env_field.dart';
 void main() {
   group('EnvConfigGenerator', () {
     test('generates code for simple schema', () {
-      final schema = EnvSchema(
+      const schema = EnvSchema(
         fields: [
-          const EnvField(
+          EnvField(
             name: 'API_URL',
             type: 'String',
             required: true,
@@ -25,9 +25,9 @@ void main() {
     });
 
     test('generates code with default values', () {
-      final schema = EnvSchema(
+      const schema = EnvSchema(
         fields: [
-          const EnvField(
+          EnvField(
             name: 'PORT',
             type: 'int',
             defaultValue: 8080,
@@ -43,9 +43,9 @@ void main() {
     });
 
     test('generates code for encrypted fields', () {
-      final schema = EnvSchema(
+      const schema = EnvSchema(
         fields: [
-          const EnvField(
+          EnvField(
             name: 'API_KEY',
             type: 'String',
             encrypted: true,
@@ -63,9 +63,9 @@ void main() {
     });
 
     test('generates code with master key', () {
-      final schema = EnvSchema(
+      const schema = EnvSchema(
         fields: [
-          const EnvField(
+          EnvField(
             name: 'TEST',
             type: 'String',
           ),
@@ -82,12 +82,12 @@ void main() {
     });
 
     test('generates all field types', () {
-      final schema = EnvSchema(
+      const schema = EnvSchema(
         fields: [
-          const EnvField(name: 'STRING_VAR', type: 'String'),
-          const EnvField(name: 'INT_VAR', type: 'int'),
-          const EnvField(name: 'BOOL_VAR', type: 'bool'),
-          const EnvField(name: 'DOUBLE_VAR', type: 'double'),
+          EnvField(name: 'STRING_VAR', type: 'String'),
+          EnvField(name: 'INT_VAR', type: 'int'),
+          EnvField(name: 'BOOL_VAR', type: 'bool'),
+          EnvField(name: 'DOUBLE_VAR', type: 'double'),
         ],
       );
 
@@ -101,4 +101,5 @@ void main() {
     });
   });
 }
+
 
